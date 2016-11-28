@@ -9,10 +9,11 @@ Vagrant.configure('2') do |config|
     config.vm.define :debug37545 do |debug37545|
         debug37545.vm.provider :virtualbox do |vb|
             vb.customize ['modifyvm', :id, '--rtcuseutc', 'on']
+            vb.customize ['modifyvm', :id, '--memory', 2048]
         end
 
         debug37545.vm.box = 'debian/contrib-jessie64'  # debian/jessie64 is missing vbox client
-        debug37545.vm.network :private_network, ip: '192.168.56.88'
+        debug37545.vm.network :private_network, ip: '192.168.56.68'
         debug37545.vm.hostname = 'saltmaster.maurusnet.test'
 
         debug37545.vm.synced_folder 'srv/salt', '/srv/salt'
